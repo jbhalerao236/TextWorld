@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Level {
 
-    private ArrayList<Creature> creatures = new ArrayList<>();
+    private ArrayList<Creature> creaturesLevel = new ArrayList<>();
     private HashMap<String, Room> rooms;
     Player player;
 
@@ -67,20 +67,20 @@ public class Level {
 
 
     public void updateCreatures() {
-        this.creatures = numTotalCreatures();
-        for (Creature c : creatures){
+        this.creaturesLevel = numTotalCreatures();
+        for (Creature c : creaturesLevel){
             c.act();
         }
     }
 
     private ArrayList<Creature> numTotalCreatures() {
         for (Room roomObj : rooms.values()){
-            List<Creature> creaturesInRooms = roomObj.getCreatures();
-            for (Creature c: creaturesInRooms){
-                this.creatures.add(c);
+            List<Creature> creaturesInRooms = roomObj.getCreaturesRoom();
+            for (Creature c : creaturesInRooms){
+                this.creaturesLevel.add(c);
             }
         }
-        return this.creatures;
+        return this.creaturesLevel;
     }
 
     public Player getPlayer() {
@@ -92,8 +92,8 @@ public class Level {
         public String name;
         public HashMap<String, Room> neighbors;
         private String description;
-        public List <Item> items = new ArrayList <>();
-       // public List <Creature> creatures = new ArrayList<>();
+        public List<Item> items = new ArrayList <>();
+        public List<Creature> creaturesRoom = new ArrayList<>();
 
 
         public Room(String name){
@@ -176,15 +176,15 @@ public class Level {
             return null;
         }
 
-        public List<Creature> getCreatures(){
-            return creatures;
+        public List<Creature> getCreaturesRoom(){
+            return creaturesRoom;
         }
 
         public String displayCreatures(){
             String output = "";
 
-            for (Creature i : creatures){
-                output += i.getCreatureType() + ", ";
+            for (Creature c : creaturesRoom){
+                output += c.getCreatureType() + ", ";
             }
 
             return output;
@@ -194,11 +194,11 @@ public class Level {
             if (creature == (null)){
                 System.out.println("Cannot add creature");
             }
-            creatures.add(creature);
+            creaturesRoom.add(creature);
         }
 
         public void removeCreature(Creature creature){
-            creatures.remove(creature);
+            creaturesRoom.remove(creature);
         }
 
         public Room getRandomNeighbor() {
