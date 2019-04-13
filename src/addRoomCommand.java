@@ -14,7 +14,9 @@ public class addRoomCommand implements Command {
     }
 
     private String getRoomName(String userInput) {
-        return userInput.substring(userInput.indexOf(" ") + 1);
+        int indexOfFirstSpace = userInput.indexOf(" ");
+        int indexOfSecondSpace = userInput.substring(indexOfFirstSpace + 1).indexOf(" ");
+        return userInput.substring(indexOfSecondSpace + 1);
     }
 
     @Override

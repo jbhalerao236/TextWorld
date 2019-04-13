@@ -47,12 +47,12 @@ public class Main {
     }
 
     private static void initializeCommands(){
-        commands.put("take",new takeCommand(level));
-        commands.put("look", new lookCommand(p));
         commands.put("add room", new addRoomCommand(level));
         commands.put("drop",new dropCommand(level));
         commands.put("go", new goCommand(level));
         commands.put("quit", new quitCommand(level));
+        commands.put("take",new takeCommand(level));
+        commands.put("look", new lookCommand(p));
     }
 
     private static Command findCommand(String response){
